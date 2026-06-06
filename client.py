@@ -9,14 +9,12 @@ def receive_messages(client_socket):
     """This function runs in a background thread to handle incoming messages."""
     while True:
         try:
-            # recv() blocks here, but it's on a separate thread so it won't freeze your typing
             server_reply = client_socket.recv(1024).decode('utf-8')
             
             if not server_reply or server_reply.lower() == 'exit':
                 print("\n[-] Server ended the chat session. Press Enter to exit.")
                 break
                 
-            # Print the incoming message and refresh the prompt line
             print(f"\n[Server]: {server_reply}")
             print("[You]: ", end="", flush=True)
             
@@ -25,7 +23,7 @@ def receive_messages(client_socket):
             break
             
     client_socket.close()
-    sys.exit() # Force exit the program if the connection drops
+    sys.exit()
 
 def start_client():
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -35,14 +33,14 @@ def start_client():
         print(f"[+] Successfully connected to the server at {SERVER_HOST}:{SERVER_PORT}")
         print("Type your message and press Enter. Type 'exit' to quit.\n")
         
-        # 1. Start the background thread for receiving data
         receive_thread = threading.Thread(target=receive_messages, args=(client_socket,))
-        receive_thread.daemon = True  # Allows thread to close instantly when main program exits
+        receive_thread.daemon = True  
         receive_thread.start()
         
-        # 2. Main thread handles ONLY sending messages
         while True:
             user_message = input("[You]: ")
+            
+            # Guard Clause: Ignore empty inputs or pure spaces
             if not user_message.strip():
                 continue
                 
