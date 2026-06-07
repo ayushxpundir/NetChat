@@ -2,7 +2,7 @@
 
 A lightweight, Command-Line Interface (CLI) based chat application built using Python's native networking capabilities.
 
----
+
 
 ## Project Overview
 
@@ -12,7 +12,7 @@ NetChat follows a classic **Client-Server architecture**. The server acts as a c
 * **Networking:** TCP Sockets (`socket.SOCK_STREAM`), IPv4 Addressing (`AF_INET`), Data Serialization/Deserialization (`encode`/`decode` via UTF-8).
 * **Version Control:** Feature branching, local repository initialization, staging, committing, and remote repository pushing via Git.
 
----
+
 
 ## Getting Started
 
@@ -30,7 +30,6 @@ NetChat follows a classic **Client-Server architecture**. The server acts as a c
 
 2. **Verify your local files:** Ensure both `server.py` and `client.py` are present in your root directory.
 
----
 
 ## How to Run the Application
 
@@ -64,5 +63,4 @@ python client.py
 * Watch the Server terminal log the text in real-time.
 * Type `exit` in the client terminal to safely teardown the TCP connection and free up the network port.
 
----
 
